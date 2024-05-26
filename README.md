@@ -1,6 +1,12 @@
 # LEXCODEX
 
-## Day 1 - Mobile: Navigation, Tailwind
+## Day 1 - Mobile: Navigation, Tailwind, i18next, Redux
+
+npm install intl-pluralrules
+
+npm install --save-dev i18next-resources-for-ts
+
+npm install i18next
 
 npx tailwindcss init
 
@@ -26,4 +32,4 @@ npm install react-native-screens
 
 npm install react-native-vector-icons
 
-npm i --save-dev @types/react-native-vector-icons
+npm install --save-dev @types/react-native-vector-icons
