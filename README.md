@@ -2,6 +2,8 @@
 
 ## Day 1 - Navigation
 
+![2024-05-26 17_06_48-Android Emulator - Hafnium_5554](https://github.com/AIPitton/lexcodex/assets/66978272/d259678f-8645-41aa-adda-e15e07d308fb)
+
 npm install @react-navigation/material-top-tabs
 
 npm install @react-navigation/native
