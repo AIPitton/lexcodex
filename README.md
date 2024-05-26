@@ -2,6 +2,12 @@
 
 ## Day 1 - Mobile: Navigation, Tailwind, i18next, Redux
 
+npm install redux-persist
+
+npm install @react-native-async-storage/async-storage
+
+npm install redux react-redux @reduxjs/toolkit
+
 npm install react-i18next
 
 npm install intl-pluralrules
