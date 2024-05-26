@@ -1,3 +1,0 @@
-# LEXCODEX
-
-## Day 1
