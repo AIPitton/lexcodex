@@ -1,0 +1,8 @@
+#IGNORED
+mobile/node_modules/
+mobile/android/
+mobile/ios/
+mobile/__tests__/
+mobile/.bundle/
+mobile/package-lock.json
+.vscode/
