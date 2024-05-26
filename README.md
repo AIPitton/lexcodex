@@ -2,6 +2,8 @@
 
 ## Day 1 - Mobile: Navigation, Tailwind, i18next, Redux
 
+npm install react-i18next
+
 npm install intl-pluralrules
 
 npm install --save-dev i18next-resources-for-ts

@@ -1,13 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import i18next from '../lib/i18n'
-
+import { useTranslation } from 'react-i18next'
 const LandingScreen = () => {
+  const { t } = useTranslation()
   return (
     <View className="flex-1 justify-center items-center">
-      <Text className="text-3xl font-bold text-center">
-        {i18next.t('title')}
-      </Text>
+      <Text className="text-2xl font-bold">{t('welcome')}</Text>
     </View>
   )
 }
