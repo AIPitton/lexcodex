@@ -1,6 +1,9 @@
 # LEXCODEX
 
-## Day 2 - Mobile:
+## Day 2 - Mobile: Button Component
+
+🟢![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/a4b71718-21ed-4986-9cc4-fdc35b8aa404)
+
 
 ## Day 1 - Mobile: Navigation, Tailwind, i18next, Redux, Fonts
 
