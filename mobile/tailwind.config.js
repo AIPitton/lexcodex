@@ -17,7 +17,11 @@ module.exports = {
       bookerly: 'BookerlyRegular',
       bookerlyBold: 'BookerlyBold',
     },
-    extend: {},
+    extend: {
+      height: {
+        909: '9.090909090909091%',
+      },
+    },
   },
   plugins: [],
 }

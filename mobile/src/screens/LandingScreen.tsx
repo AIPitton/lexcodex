@@ -15,16 +15,11 @@ const LandingScreen = () => {
   }, [])
   return (
     <View className="flex-1 justify-center items-center">
-      <Text style={style.text}>{t('welcome')}</Text>
+      <Text className="text-3xl font-bookerly">{t('welcome')}</Text>
+      <Text className="text-3xl font-bookerlyBold">{t('welcome')}</Text>
+      <Text className="text-3xl font-bold">{t('welcome')}</Text>
     </View>
   )
 }
 
 export default LandingScreen
-
-const style = StyleSheet.create({
-  text: {
-    fontSize: 50,
-    fontFamily: 'BookerlyBold',
-  },
-})
