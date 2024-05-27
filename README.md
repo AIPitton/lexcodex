@@ -1,6 +1,8 @@
 # LEXCODEX
 
-## Day 1 - Mobile: Navigation, Tailwind, i18next, Redux
+## Day 1 - Mobile: Navigation, Tailwind, i18next, Redux, Fonts
+
+![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/ca0164ee-5b2b-4a12-acdf-247c2e7a4c37)
 
 npm install redux-persist
 
