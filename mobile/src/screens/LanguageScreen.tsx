@@ -17,6 +17,7 @@ const LanguageScreen = () => {
   return (
     <View className="flex-1 justify-center items-center">
       <Text className="font-bookerly text-3xl ">{t('welcome')}</Text>
+      <Text className="font-bookerlyBold text-3xl ">{t('welcome')}</Text>
       <FlatList
         data={Object.keys(languageResources)}
         renderItem={({ item }) => (
