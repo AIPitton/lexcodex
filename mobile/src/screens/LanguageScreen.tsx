@@ -16,12 +16,12 @@ const LanguageScreen = () => {
   }
   return (
     <View className="flex-1 justify-center items-center">
-      <Text className="text-2xl font-bold">{t('welcome')}</Text>
+      <Text className="font-bookerly text-3xl ">{t('welcome')}</Text>
       <FlatList
         data={Object.keys(languageResources)}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => changeLng(item)}>
-            <Text className="text-2xl font-bold">
+            <Text className="text-3xl font-bookerlyBold text-center">
               {languagesList[item].nativeName}
             </Text>
           </TouchableOpacity>

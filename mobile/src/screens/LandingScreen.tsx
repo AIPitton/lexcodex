@@ -1,10 +1,9 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import i18next from '../lib/i18next'
-
 const LandingScreen = () => {
   const { localesPersist } = useSelector((state: RootState) => state.main)
 
@@ -16,7 +15,7 @@ const LandingScreen = () => {
   }, [])
   return (
     <View className="flex-1 justify-center items-center">
-      <Text className="text-2xl font-bold">{t('welcome')}</Text>
+      <Text className="font-bookerly text-5xl ">{t('welcome')}</Text>
     </View>
   )
 }
