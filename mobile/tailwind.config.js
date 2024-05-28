@@ -12,6 +12,7 @@ module.exports = {
       W: '#FFFFFF',
       s: '#0C4A6E',
       o: '#EA580C',
+      gr: '#6F6F6F',
     },
     fontFamily: {
       bookerly: 'BookerlyRegular',

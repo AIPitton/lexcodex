@@ -1,9 +1,10 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import LandingScreen from '../screens/LandingScreen'
 import WorkingScreen from '../screens/WorkingScreen'
-import LanguageScreen from '../screens/LanguageScreen'
+import SettingsScreen from '../screens/SettingsScreen'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { iconSize, iconColor, iconColorSelected } from '../utils/constants'
 // import { createStackNavigator } from '@react-navigation/stack'
 
@@ -38,14 +39,12 @@ const TopTab = () => {
         }}
       />
       <Tab.Screen
-        name="Language"
-        component={LanguageScreen}
+        name="Settings"
+        component={SettingsScreen}
         options={{
           tabBarIcon: ({ focused }) => {
             const color = focused ? iconColor : iconColorSelected
-            return (
-              <FontAwesome6 name="language" size={iconSize} color={color} />
-            )
+            return <MaterialIcons name="settings" size={25} color={color} />
           },
         }}
       />

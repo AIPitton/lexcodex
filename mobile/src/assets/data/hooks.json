@@ -1,0 +1,62 @@
+[
+  {
+    "question": "What is React Hooks?",
+    "answer": "React Hooks is a function that lets you use state and other React features without writing a class. They were introduced in React 16.8 to enable functional components to use state which means to make the code good and easy to understand."
+  },
+  {
+    "question": "What problems do React Hooks solve?",
+    "answer": "React Hooks solves the problems of sharing the stateful logic between components in a more modular and reusable way than class component."
+  },
+  {
+    "question": "When is useState used?",
+    "answer": "useState enables components to manage and update their own state without using classes."
+  },
+  {
+    "question": "When is useEffect used?",
+    "answer": "useEffect is used to connect component to an external system."
+  },
+  {
+    "question": "When is useContext used?",
+    "answer": "useContext it is used to consume data from a Context in a functional component."
+  },
+  {
+    "question": "When is useReducer used?",
+    "answer": "useReducer is used to manage complex state logic through a reducer function."
+  },
+  {
+    "question": "When is useCallback used?",
+    "answer": "useCallback used to memoize functions, preventing unnecessary re-renders in child components."
+  },
+  {
+    "question": "When is useMemo used?",
+    "answer": "useMemo is used to memoize the result of a function computation, preventing unnecessary recalculations."
+  },
+  {
+    "question": "When is useRef used?",
+    "answer": "useRef is used to create mutable references that persist across renders in functional components."
+  },
+  {
+    "question": "When is useImperativeHandler used?",
+    "answer": "useImperativeHandler customizes the instance value that is exposed when using ref with functional components."
+  },
+  {
+    "question": "How does useState work?",
+    "answer": "The useState Hook enables you to add state to your functional components. It returns a stateful value and a function that can be used to update that value. By using Hooks, you can extract stateful logic from your component, which can then be tested independently."
+  },
+  {
+    "question": "When would you use useEffect?",
+    "answer": "useEffect is typically used in React functional components to perform side effects, like data fetching, subscriptions, or DOM manipulations, after the component has rendered. It’s similar to lifecycle methods in class components, but it’s more flexible and concise."
+  },
+  {
+    "question": "What is the purpose of useCallback Hooks?",
+    "answer": "The purpose of useCallback Hooks is used to memoize functions, and prevent unnecessary re-rendering of child components that rely on those components. The useCallback function in React is mainly used to keep a reference to a function constant across multiple re-renders. This feature becomes useful when you want to prevent the unnecessary re-creation of functions, especially when you need to pass them as dependencies to other hooks such as useMemo or useEffect."
+  },
+  {
+    "question": "Explain the difference between useMemo and useCallback?",
+    "answer": "useMemo: Memoizes a value (result of a function), Memoized value, When you need to memoize a calculated value, Recalculates when any dependency changes, Example: Memoizing the result of expensive computations; useCallback: Memoizes a function, Memoized function reference, When you need to memoize a function, Recreates the function only when any dependency changes, Example: Memoizing event handler functions to prevent re-renders"
+  },
+  {
+    "question": "What is the useContext used for?",
+    "answer": "useContext is a function that enables access to context values provided by a Context.Provider component at a higher level in the component tree. This allows data to be passed down the tree without the need to manually pass props at each level."
+  }
+]
