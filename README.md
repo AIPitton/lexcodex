@@ -2,7 +2,8 @@
 
 ## Day 3 - Mobile: Screens Progress
 
-🟢
+🟢![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/810b7215-319a-4609-a469-d246e89e7046)
+
 
 ## Day 2 - Mobile: Button Component
 
