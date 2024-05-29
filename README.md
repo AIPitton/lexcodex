@@ -1,6 +1,8 @@
 # LEXCODEX
 
-## Day 4 - Mobile
+## Day 4 - Mobile: Create Local Folder, Download File, Fetch the data to FlatList from local json
+
+npm install react-native-blob-util
 
 npm install react-native-fs
 

@@ -1,23 +1,67 @@
-import { View } from 'react-native'
-import React from 'react'
+import { Platform, View } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
 import WorkingButton from '../components/WorkingButton'
-
+import { setBookiliad, setMax, setMin } from '../features/main/mainSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../app/store'
+import RNFS from 'react-native-fs'
+import { use } from 'i18next'
 const WorkingScreen = () => {
+  const { bookiliad, min, max } = useSelector((state: RootState) => state.main)
+  const dispatch = useDispatch()
+  const [data, setData] = useState([])
+  const isFirstRender = useRef(true)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const baseDirectory =
+          Platform.OS === 'ios'
+            ? RNFS.CachesDirectoryPath
+            : RNFS.ExternalStorageDirectoryPath
+
+        const filePath = `${baseDirectory}/LexCodex/iliad_1_5.json`
+
+        const fileContent = await RNFS.readFile(filePath, 'utf8')
+        const parsedData = JSON.parse(fileContent)
+        setData(parsedData)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+  const handleFilter = ({ min, max }) => {
+    const filteredData = data.filter((item) => item.id > min && item.id <= max)
+    dispatch(setBookiliad(filteredData)) // Dispatch the filtered data
+  }
   const handlePress = (p0: number) => {
     switch (p0) {
       case 1:
-        console.log('Button 1 pressed!')
+        dispatch(setMin(0))
+        dispatch(setMax(100))
+        handleFilter({ min, max })
         break
       case 2:
-        console.log('Button 2 pressed!')
+        dispatch(setMin(99))
+        dispatch(setMax(200))
+        handleFilter({ min, max })
         break
       case 3:
-        console.log('Button 3 pressed!')
+        dispatch(setMin(199))
+        dispatch(setMax(300))
+        handleFilter({ min, max })
         break
       default:
         console.log('Other button pressed!')
     }
   }
+  useEffect(() => {
+    if (!isFirstRender.current) {
+      handleFilter({ min, max })
+    }
+    isFirstRender.current = false
+  }, [min, max])
   return (
     <View className="flex-1 items-center justify-center">
       {[...Array(11)].map((_, rowIndex) => (
