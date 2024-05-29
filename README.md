@@ -1,9 +1,16 @@
 # LEXCODEX
 
+## Day 4
+
+npm install react-native-fs
+
+npm install --save-dev @types/react-native-sqlite-storage
+
+npm install react-native-sqlite-storage
+
 ## Day 3 - Mobile: Screens Progress
 
 🟢![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/810b7215-319a-4609-a469-d246e89e7046)
-
 
 ## Day 2 - Mobile: Button Component
 
