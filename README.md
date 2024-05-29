@@ -2,6 +2,8 @@
 
 ## Day 4 - Mobile: Create Local Folder, Download File, Fetch the data to FlatList from local json
 
+![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/8a74233f-542a-4907-8435-06d7b5ad10cc)
+
 npm install react-native-blob-util
 
 npm install react-native-fs
