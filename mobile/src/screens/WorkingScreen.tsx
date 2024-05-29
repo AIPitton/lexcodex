@@ -6,8 +6,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import RNFS from 'react-native-fs'
 import { use } from 'i18next'
-const WorkingScreen = () => {
+import { NavigationProp } from '@react-navigation/native'
+import { RootStackParamList } from '../navigation/Router'
+const WorkingScreen = ({
+  navigation,
+}: {
+  navigation: NavigationProp<RootStackParamList>
+}) => {
   const { bookiliad, min, max } = useSelector((state: RootState) => state.main)
+
   const dispatch = useDispatch()
   const [data, setData] = useState([])
   const isFirstRender = useRef(true)
@@ -34,6 +41,7 @@ const WorkingScreen = () => {
   const handleFilter = ({ min, max }) => {
     const filteredData = data.filter((item) => item.id > min && item.id <= max)
     dispatch(setBookiliad(filteredData)) // Dispatch the filtered data
+    navigation.navigate('Landing')
   }
   const handlePress = (p0: number) => {
     switch (p0) {
