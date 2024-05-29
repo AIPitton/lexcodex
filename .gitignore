@@ -1,5 +1,7 @@
 #IGNORED
 web/node_modules/
+web/.next/
+web/package-lock.json
 mobile/node_modules/
 mobile/android/
 mobile/ios/

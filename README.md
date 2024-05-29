@@ -1,12 +1,16 @@
 # LEXCODEX
 
-## Day 4
+## Day 4 - Mobile
 
 npm install react-native-fs
 
 npm install --save-dev @types/react-native-sqlite-storage
 
 npm install react-native-sqlite-storage
+
+## Web
+
+npx create-next-app@latest
 
 ## Day 3 - Mobile: Screens Progress
 
