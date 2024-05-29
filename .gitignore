@@ -2,6 +2,7 @@
 web/node_modules/
 web/.next/
 web/package-lock.json
+web/build/
 mobile/node_modules/
 mobile/android/
 mobile/ios/
