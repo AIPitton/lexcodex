@@ -2,7 +2,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import LandingScreen from '../screens/LandingScreen'
 import WorkingScreen from '../screens/WorkingScreen'
 import SettingsScreen from '../screens/SettingsScreen'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { iconSize, iconColor, iconColorSelected } from '../utils/constants'
@@ -17,27 +17,31 @@ const TopTab = () => {
       screenOptions={{ tabBarShowLabel: false }}
     >
       <Tab.Screen
+        name="Working"
+        component={WorkingScreen}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            const color = focused ? iconColor : iconColorSelected
+            return (
+              <MaterialCommunityIcons
+                name="menu"
+                size={iconSize}
+                color={color}
+              />
+            )
+          },
+        }}
+      />
+      {/* <Tab.Screen
         name="Landing"
         component={LandingScreen}
         options={{
           tabBarIcon: ({ focused }) => {
             const color = focused ? iconColor : iconColorSelected
-            return (
-              <FontAwesome6 name="book-open" size={iconSize} color={color} />
-            )
+            return <FontAwesome6 name="book-open" size={20} color={color} />
           },
         }}
-      />
-      <Tab.Screen
-        name="Work"
-        component={WorkingScreen}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            const color = focused ? iconColor : iconColorSelected
-            return <FontAwesome5 name="hammer" size={iconSize} color={color} />
-          },
-        }}
-      />
+      /> */}
       <Tab.Screen
         name="Settings"
         component={SettingsScreen}

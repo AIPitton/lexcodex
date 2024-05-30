@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, FlatList, Platform } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Platform,
+  TouchableOpacity,
+} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -9,7 +16,14 @@ import { createOverwriteDownload } from '../features/update/createOverwriteDownl
 import { getDownloadPermissionAndroid } from '../features/download/downloadPermission'
 import RNFS from 'react-native-fs'
 import { setBookiliad } from '../features/main/mainSlice'
-const LandingScreen = () => {
+import TopButtons from '../components/TopButtons'
+import { NavigationProp } from '@react-navigation/native'
+import { RootStackParamList } from '../navigation/Router'
+const LandingScreen = ({
+  navigation,
+}: {
+  navigation: NavigationProp<RootStackParamList>
+}) => {
   const { localesPersist } = useSelector((state: RootState) => state.main)
   const { bookiliad, min, max } = useSelector((state: RootState) => state.main)
   const { t } = useTranslation()
@@ -42,7 +56,8 @@ const LandingScreen = () => {
     )
   }
   return (
-    <View>
+    <View className=" flex-1">
+      <TopButtons navigation={navigation} />
       <FlatList data={bookiliad} renderItem={renderItem} />
     </View>
   )

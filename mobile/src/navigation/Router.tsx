@@ -2,9 +2,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import TopTab from './TopTab'
+import LandingScreen from '../screens/LandingScreen'
 
 export type RootStackParamList = {
-  Home: undefined
+  TopTab: undefined
+  Landing: undefined
 }
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -13,7 +15,12 @@ const Navigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name="Landing"
+          component={LandingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TopTab"
           component={TopTab}
           options={{ headerShown: false }}
         />
