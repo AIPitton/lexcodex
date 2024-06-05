@@ -1,4 +1,4 @@
-import { Platform, View } from 'react-native'
+import { Platform, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import WorkingButton from '../components/WorkingButton'
 import { setBookiliad, setMax, setMin } from '../features/main/mainSlice'
@@ -38,8 +38,10 @@ const WorkingScreen = ({
 
     fetchData()
   }, [])
-  const handleFilter = ({ min, max }) => {
-    const filteredData = data.filter((item) => item.id > min && item.id <= max)
+  const handleFilter = async ({ min, max }) => {
+    const filteredData = await data.filter(
+      (item) => item.id > min && item.id <= max
+    )
     dispatch(setBookiliad(filteredData)) // Dispatch the filtered data
     navigation.navigate('Landing')
   }
