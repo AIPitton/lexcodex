@@ -1,5 +1,9 @@
 # LEXCODEX
 
+## Day 6 - Mobile: Version Control
+
+![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/998146c6-f91b-4f33-abb8-a9d63b8a0aca)
+
 ## Day 5 - Mobile: Top Buttons Navigation
 
 ![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/fc95be86-4b89-4f2d-bbe1-995a0ec2323e)
