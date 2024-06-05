@@ -11,6 +11,7 @@ export interface MainState {
   }[]
   min: number
   max: number
+  updateRequired: number
 }
 
 const initialState: MainState = {
@@ -18,6 +19,7 @@ const initialState: MainState = {
   bookiliad: [],
   min: 0,
   max: 0,
+  updateRequired: 0,
 }
 
 export const mainSlice = createSlice({
@@ -36,10 +38,18 @@ export const mainSlice = createSlice({
     setMax: (state, action) => {
       state.max = action.payload
     },
+    setUpdateRequired: (state, action) => {
+      state.updateRequired = action.payload
+    },
   },
 })
 
-export const { setLocalesPersist, setBookiliad, setMin, setMax } =
-  mainSlice.actions
+export const {
+  setLocalesPersist,
+  setBookiliad,
+  setMin,
+  setMax,
+  setUpdateRequired,
+} = mainSlice.actions
 
 export default mainSlice.reducer
