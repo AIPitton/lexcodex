@@ -4,7 +4,8 @@
     "changeFontSize": "Schriftgröße ändern",
     "changeFontColor": "Schriftfarbe ändern",
     "changeFontFamily": "Schriftstil ändern",
-    "changeBackground": "Hintergrund ändern"
+    "changeBackground": "Hintergrund ändern",
+    "update": "Aktualisieren"
   },
   "working": {
     "1": "1",

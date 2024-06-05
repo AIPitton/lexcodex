@@ -51,10 +51,20 @@ const TopButtons = ({
         <Ionicons name="search" size={iconSize} color="grey" />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('TopTab')}
+        onPress={() => console.log('first')}
         className="flex-1 items-center justify-center"
       >
         <Octicons name="plus" size={iconSize} color="grey" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('TopTab')}
+        className="flex-1 items-center justify-center"
+      >
+        <MaterialCommunityIcons
+          name="dots-vertical"
+          size={iconSize}
+          color="grey"
+        />
       </TouchableOpacity>
     </View>
   )

@@ -4,7 +4,8 @@
     "changeFontSize": "Change font size",
     "changeFontColor": "Change font color",
     "changeFontFamily": "Change font style",
-    "changeBackground": "Change background"
+    "changeBackground": "Change background",
+    "update": "Update"
   },
   "working": {
     "1": "1",

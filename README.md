@@ -4,7 +4,6 @@
 
 ![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/fc95be86-4b89-4f2d-bbe1-995a0ec2323e)
 
-
 ## Day 4 - Mobile: Create Local Folder, Download File, Fetch the data to FlatList from local json
 
 ![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/8a74233f-542a-4907-8435-06d7b5ad10cc)
