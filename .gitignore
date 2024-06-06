@@ -9,6 +9,8 @@ mobile/ios/
 mobile/__tests__/
 mobile/.bundle/
 mobile/package-lock.json
+api/node_modules
+api/package-lock.json
 .vscode/
 # Local Netlify folder
 .netlify

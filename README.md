@@ -1,5 +1,15 @@
 # LEXCODEX
 
+## Day 7 - mobile:
+
+# Api: express
+
+npm init
+
+npm install express
+
+node server.js
+
 ## Day 6 - Mobile: Version Control
 
 ![Android Emulator](https://github.com/AIPitton/lexcodex/assets/66978272/998146c6-f91b-4f33-abb8-a9d63b8a0aca)
