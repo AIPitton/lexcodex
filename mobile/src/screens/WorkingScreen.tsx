@@ -8,6 +8,7 @@ import RNFS from 'react-native-fs'
 import { use } from 'i18next'
 import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
+import TopButtons from '../components/TopButtons'
 const WorkingScreen = ({
   navigation,
 }: {
@@ -42,7 +43,7 @@ const WorkingScreen = ({
     const filteredData = await data.filter(
       (item) => item.id > min && item.id <= max
     )
-    dispatch(setBookiliad(filteredData)) // Dispatch the filtered data
+    dispatch(setBookiliad(filteredData))
     navigation.navigate('Landing')
   }
   const handlePress = (p0: number) => {
@@ -74,6 +75,7 @@ const WorkingScreen = ({
   }, [min, max])
   return (
     <View className="flex-1 items-center justify-center">
+      <TopButtons navigation={navigation} />
       {[...Array(11)].map((_, rowIndex) => (
         <View
           key={rowIndex}

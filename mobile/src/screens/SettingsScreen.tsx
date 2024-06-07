@@ -8,7 +8,14 @@ import { RootState } from '../app/store'
 import { setLocalesPersist } from '../features/main/mainSlice'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import SettingsRow from '../components/SettingsRow'
-const SettingsScreen = () => {
+import TopButtons from '../components/TopButtons'
+import { NavigationProp } from '@react-navigation/native'
+import { RootStackParamList } from '../navigation/Router'
+const SettingsScreen = ({
+  navigation,
+}: {
+  navigation: NavigationProp<RootStackParamList>
+}) => {
   const { localesPersist } = useSelector((state: RootState) => state.main)
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -51,6 +58,7 @@ const SettingsScreen = () => {
           />
         </View>
       </Modal>
+      <TopButtons navigation={navigation} />
       <SettingsRow onPress={toggleModal} text={t('settings.changeLanguage')} />
       <SettingsRow
         onPress={changeBackground}

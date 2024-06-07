@@ -16,26 +16,26 @@ const TopButtons = ({
   return (
     <View className="flex-row h-909 items-center justify-center">
       <TouchableOpacity
-        onPress={() => navigation.navigate('TopTab')}
+        onPress={() => navigation.navigate('Working')}
         className="flex-1 items-center justify-center"
       >
         <MaterialCommunityIcons name="menu" size={iconSize} color="grey" />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('TopTab')}
+        onPress={() => navigation.navigate('Working')}
         className="flex-1 items-center justify-center"
       >
         <AntDesign name="close" size={iconSize} color="grey" />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('TopTab')}
+        onPress={() => navigation.navigate('Working')}
         className="flex-1 items-center justify-center"
       >
         <MaterialCommunityIcons name="less-than" size={iconSize} color="grey" />
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate('TopTab')}
+        onPress={() => navigation.navigate('Working')}
         className="flex-1 items-center justify-center"
       >
         <MaterialCommunityIcons
@@ -45,7 +45,7 @@ const TopButtons = ({
         />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('TopTab')}
+        onPress={() => navigation.navigate('Working')}
         className="flex-1 items-center justify-center"
       >
         <Ionicons name="search" size={iconSize} color="grey" />
@@ -57,7 +57,7 @@ const TopButtons = ({
         <Octicons name="plus" size={iconSize} color="grey" />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('TopTab')}
+        onPress={() => navigation.navigate('Settings')}
         className="flex-1 items-center justify-center"
       >
         <MaterialCommunityIcons

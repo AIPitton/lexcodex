@@ -37,17 +37,20 @@ const LandingScreen = ({
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [update, setUpdate] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
+  const askPermission = () => {
     if (Platform.OS === 'android') {
-      getDownloadPermissionAndroid().then((granted) => {
+      getDownloadPermissionAndroid().then(async (granted) => {
         if (granted) {
-          createOverwriteDownload(urliliad)
+          dispatch(setUpdateRequired(update)),
+            setIsModalVisible(false),
+            await createOverwriteDownload(urliliad)
+          navigation.navigate('Working')
         } else {
           console.log('Permission denied')
         }
       })
     }
-  }, [])
+  }
   useEffect(() => {
     if (localesPersist) {
       i18next.changeLanguage(localesPersist)
@@ -99,30 +102,16 @@ const LandingScreen = ({
   return (
     <View className=" flex-1">
       <TopButtons navigation={navigation} />
-      <Button
-        title="Update"
-        onPress={() => dispatch(setUpdateRequired(update))}
-      />
-      <Button title="console Update" onPress={() => console.log(update)} />
-      <Button
-        title="console Update Required"
-        onPress={() => console.log(updateRequired)}
-      />
-      <Button
-        title="console isModalVisible"
-        onPress={() => console.log(isModalVisible)}
-      />
       {isLoading ? (
-        <ActivityIndicator size="large" color="primary" /> // Adjust props as needed
+        <ActivityIndicator size="large" color="primary" />
       ) : isModalVisible ? (
-        <Text className="text-3xl font-bookerlyBold justify-center items-center">
-          Update Required
-        </Text>
-      ) : (
-        <Text className="text-3xl font-bookerlyBold justify-center items-center">
-          Update Not Required
-        </Text>
-      )}
+        <Button
+          title="Update"
+          onPress={() => {
+            askPermission()
+          }}
+        />
+      ) : null}
       <FlatList data={bookiliad} renderItem={renderItem} />
     </View>
   )
