@@ -1,6 +1,8 @@
 # LEXCODEX
 
-## Day 7 - mobile:
+## Day 8 - mobile: UpdateButton
+
+## Day 7 - mobile: Progress
 
 # Api: express
 
