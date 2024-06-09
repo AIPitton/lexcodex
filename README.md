@@ -8,6 +8,20 @@ node_modules/react-native-sqlite-storage/react-native.config.js
 
 changed: ios: {}
 
+npx react-native upgrade
+
+npm add --save-dev @rnx-kit/align-deps
+
+npx rnx-align-deps --init app
+
+npm audit
+
+npx fix-dependencies
+
+npx @rnx-kit/align-deps --requirements react-native@[major.minor] --write
+
+replaced "react-native": "^0.74.0", with "react-native": "^0.74.2" in packages.json and npm install
+
 ## Day 9 - Mobile: Progress
 
 ## Day 8 - Mobile: UpdateButton
