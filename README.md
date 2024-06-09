@@ -1,10 +1,20 @@
 # LEXCODEX
 
-## Day 8 - mobile: UpdateButton
+## Day 10 - Mobile: Solving the error: "Package react-native-sqlite-storage contains invalid configuration: "dependency.platforms.ios.project" is not allowed" when npm start
 
-## Day 7 - mobile: Progress
+npx patch-package react-native-sqlite-storage
 
-# Api: express
+node_modules/react-native-sqlite-storage/react-native.config.js
+
+changed: ios: {}
+
+## Day 9 - Mobile: Progress
+
+## Day 8 - Mobile: UpdateButton
+
+## Day 7 - Mobile: Progress
+
+## Api: express
 
 npm init
 
