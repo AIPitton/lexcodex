@@ -9,6 +9,7 @@ import { use } from 'i18next'
 import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
 import TopButtons from '../components/TopButtons'
+import { openDatabase, SQLiteDatabase } from 'react-native-sqlite-storage'
 const WorkingScreen = ({
   navigation,
 }: {
@@ -19,6 +20,8 @@ const WorkingScreen = ({
   const dispatch = useDispatch()
   const [data, setData] = useState([])
   const isFirstRender = useRef(true)
+  const [db, setDb] = useState<SQLiteDatabase | null>(null)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,19 +29,39 @@ const WorkingScreen = ({
           Platform.OS === 'ios'
             ? RNFS.CachesDirectoryPath
             : RNFS.ExternalStorageDirectoryPath
-
-        const filePath = `${baseDirectory}/LexCodex/iliad_1_5.json`
-
-        const fileContent = await RNFS.readFile(filePath, 'utf8')
-        const parsedData = JSON.parse(fileContent)
-        setData(parsedData)
+        const filePath = `${baseDirectory}/LexCodex/iliad.db`
+        const database = await openDatabase({
+          name: filePath,
+          location: 'default',
+        })
+        setDb(database)
+        consoleLogDB(database)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
     }
-
     fetchData()
   }, [])
+
+  const consoleLogDB = (database: SQLiteDatabase) => {
+    database.transaction((txn) => {
+      txn.executeSql(
+        `SELECT id, text FROM iliad`,
+        [],
+        (sqlTxn, res) => {
+          console.log('Data in DB:')
+          let len = res.rows.length
+          for (let i = 0; i < len; i++) {
+            let item = res.rows.item(i)
+            console.log(`id: ${item.id}, Text: ${item.text}`)
+          }
+        },
+        (error) => {
+          console.log('Error fetching categories: ' + error.message)
+        }
+      )
+    })
+  }
   const handleFilter = async ({ min, max }) => {
     const filteredData = await data.filter(
       (item) => item.id > min && item.id <= max
@@ -46,6 +69,7 @@ const WorkingScreen = ({
     dispatch(setBookiliad(filteredData))
     navigation.navigate('Landing')
   }
+
   const handlePress = (p0: number) => {
     switch (p0) {
       case 1:
