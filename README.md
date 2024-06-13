@@ -84,6 +84,8 @@ npm install --save-dev i18next-resources-for-ts
 
 npm install i18next
 
+copy custom fonts to android\app\src\main\assets\fonts
+
 npx tailwindcss init
 
 npm install --dev tailwindcss@3.3.2
