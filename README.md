@@ -1,5 +1,7 @@
 # LEXCODEX
 
+## Day 12 - Mobile: Sqlite Redux Persist
+
 ## Day 11 - Mobile: Accessing the data from local database
 
 ## Day 10 - Mobile: Solving the error: "Package react-native-sqlite-storage contains invalid configuration: "dependency.platforms.ios.project" is not allowed" when npm start
