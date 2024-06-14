@@ -18,7 +18,7 @@ const WorkingScreen = ({
   const { bookiliad, min, max } = useSelector((state: RootState) => state.main)
 
   const dispatch = useDispatch()
-  const [data, setData] = useState([])
+  const [data, setData] = useState<{ id: number; text: string }[]>([])
   const isFirstRender = useRef(true)
   const [db, setDb] = useState<SQLiteDatabase | null>(null)
 
@@ -51,10 +51,14 @@ const WorkingScreen = ({
         (sqlTxn, res) => {
           console.log('Data in DB:')
           let len = res.rows.length
+          const fetchedData: { id: number; text: string }[] = []
           for (let i = 0; i < len; i++) {
             let item = res.rows.item(i)
             console.log(`id: ${item.id}, Text: ${item.text}`)
+            fetchedData.push({ id: item.id, text: item.text })
           }
+          setData(fetchedData)
+          dispatch(setBookiliad(fetchedData))
         },
         (error) => {
           console.log('Error fetching categories: ' + error.message)
