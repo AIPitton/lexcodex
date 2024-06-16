@@ -1,7 +1,12 @@
 import { Platform, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import WorkingButton from '../components/WorkingButton'
-import { setBookiliad, setMax, setMin } from '../features/main/mainSlice'
+import {
+  setBookiliad,
+  setMax,
+  setMin,
+  setConceal,
+} from '../features/main/mainSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import RNFS from 'react-native-fs'
@@ -15,92 +20,38 @@ const WorkingScreen = ({
 }: {
   navigation: NavigationProp<RootStackParamList>
 }) => {
-  const { bookiliad, min, max } = useSelector((state: RootState) => state.main)
+  const { bookiliad, min, max, conceal } = useSelector(
+    (state: RootState) => state.main
+  )
 
   const dispatch = useDispatch()
-  const [data, setData] = useState<{ id: number; text: string }[]>([])
-  const isFirstRender = useRef(true)
-  const [db, setDb] = useState<SQLiteDatabase | null>(null)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const baseDirectory =
-          Platform.OS === 'ios'
-            ? RNFS.CachesDirectoryPath
-            : RNFS.ExternalStorageDirectoryPath
-        const filePath = `${baseDirectory}/LexCodex/iliad.db`
-        const database = await openDatabase({
-          name: filePath,
-          location: 'default',
-        })
-        setDb(database)
-        consoleLogDB(database)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-    fetchData()
-  }, [])
-
-  const consoleLogDB = (database: SQLiteDatabase) => {
-    database.transaction((txn) => {
-      txn.executeSql(
-        `SELECT id, text FROM iliad`,
-        [],
-        (sqlTxn, res) => {
-          console.log('Data in DB:')
-          let len = res.rows.length
-          const fetchedData: { id: number; text: string }[] = []
-          for (let i = 0; i < len; i++) {
-            let item = res.rows.item(i)
-            console.log(`id: ${item.id}, Text: ${item.text}`)
-            fetchedData.push({ id: item.id, text: item.text })
-          }
-          setData(fetchedData)
-          dispatch(setBookiliad(fetchedData))
-        },
-        (error) => {
-          console.log('Error fetching categories: ' + error.message)
-        }
-      )
-    })
-  }
-  const handleFilter = async ({ min, max }) => {
-    const filteredData = await data.filter(
-      (item) => item.id > min && item.id <= max
-    )
-    dispatch(setBookiliad(filteredData))
-    navigation.navigate('Landing')
-  }
 
   const handlePress = (p0: number) => {
     switch (p0) {
       case 1:
         dispatch(setMin(0))
         dispatch(setMax(100))
-        handleFilter({ min, max })
+        navigation.navigate('Landing')
+        dispatch(setConceal(true))
+
         break
       case 2:
         dispatch(setMin(99))
         dispatch(setMax(200))
-        handleFilter({ min, max })
+        navigation.navigate('Landing')
+        dispatch(setConceal(true))
         break
       case 3:
         dispatch(setMin(199))
         dispatch(setMax(300))
-        handleFilter({ min, max })
+        navigation.navigate('Landing')
+        dispatch(setConceal(true))
         break
       default:
         console.log('Other button pressed!')
     }
   }
-  useEffect(() => {
-    if (!isFirstRender.current) {
-      handleFilter({ min, max })
-    }
-    isFirstRender.current = false
-  }, [min, max])
+
   return (
     <View className="flex-1 items-center justify-center">
       <TopButtons navigation={navigation} />

@@ -12,6 +12,7 @@ export interface MainState {
   min: number
   max: number
   updateRequired: number
+  conceal: boolean
 }
 
 const initialState: MainState = {
@@ -20,6 +21,7 @@ const initialState: MainState = {
   min: 0,
   max: 0,
   updateRequired: 0,
+  conceal: true,
 }
 
 export const mainSlice = createSlice({
@@ -41,6 +43,9 @@ export const mainSlice = createSlice({
     setUpdateRequired: (state, action) => {
       state.updateRequired = action.payload
     },
+    setConceal: (state, action) => {
+      state.conceal = action.payload
+    },
   },
 })
 
@@ -50,6 +55,7 @@ export const {
   setMin,
   setMax,
   setUpdateRequired,
+  setConceal,
 } = mainSlice.actions
 
 export default mainSlice.reducer
