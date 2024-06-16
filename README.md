@@ -1,5 +1,7 @@
 # LEXCODEX
 
+## Day 12 - Mobile: Functionality Completed
+
 ## Day 12 - Mobile: Sqlite Redux Persist
 
 ## Day 11 - Mobile: Accessing the data from local database
