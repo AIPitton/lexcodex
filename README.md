@@ -1,6 +1,8 @@
 # LEXCODEX
 
-## Day 12 - Mobile: Functionality Completed
+## Day 14 - Mobile: Progress
+
+## Day 13 - Mobile: Functionality Completed
 
 ## Day 12 - Mobile: Sqlite Redux Persist
 

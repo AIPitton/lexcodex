@@ -1,5 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { View, Text, FlatList, Platform, ActivityIndicator } from 'react-native'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
+import {
+  View,
+  Text,
+  FlatList,
+  Platform,
+  ActivityIndicator,
+  Button,
+} from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
@@ -121,7 +128,6 @@ const LandingScreen = ({
             fetchedData.push({ id: item.id, text: item.text })
           }
           setData(fetchedData)
-          // console.log('Fetched data:', fetchedData)
           setIsLoading(false)
           dispatch(setConceal(false))
         },
@@ -132,6 +138,7 @@ const LandingScreen = ({
       )
     })
   }
+
   const renderItem = ({ item }: { item: any }) => {
     return (
       <View className="flex-row justify-start items-start">
@@ -146,8 +153,9 @@ const LandingScreen = ({
   }
 
   return (
-    <View className=" flex-1">
+    <View className="flex-1">
       <TopButtons navigation={navigation} />
+      <Button title="Download" onPress={() => askPermission()} />
       {conceal ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (

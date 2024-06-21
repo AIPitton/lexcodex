@@ -8,11 +8,14 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import { iconSize } from '../utils/constants'
 import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
+import { useSelector } from 'react-redux'
+import { RootState } from '../app/store'
 const TopButtons = ({
   navigation,
 }: {
   navigation: NavigationProp<RootStackParamList>
 }) => {
+  const { book } = useSelector((state: RootState) => state.main)
   return (
     <View className="flex-row h-909 items-center justify-center">
       <TouchableOpacity
@@ -25,7 +28,8 @@ const TopButtons = ({
         onPress={() => navigation.navigate('Working')}
         className="flex-1 items-center justify-center"
       >
-        <AntDesign name="close" size={iconSize} color="grey" />
+        {/* <AntDesign name="close" size={iconSize} color="grey" /> */}
+        <Text>{book}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('Working')}

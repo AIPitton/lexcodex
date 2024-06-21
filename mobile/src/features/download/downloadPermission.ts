@@ -7,7 +7,6 @@ export const getDownloadPermissionAndroid = async () => {
       {
         title: 'File Download Permission',
         message: 'Your permission is required to save Files to your device',
-        buttonNegative: 'Cancel',
         buttonPositive: 'OK',
       }
     )

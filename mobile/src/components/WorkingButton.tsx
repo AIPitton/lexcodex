@@ -17,7 +17,7 @@ const WorkingButton = ({
         onPress={onPress}
         className="w-full h-full items-center justify-center rounded-2xl border-2 border-W bg-s"
       >
-        <Text className="text-W text-2xl font-bold">{text}</Text>
+        <Text className="text-W text-l font-bold">{text}</Text>
       </TouchableOpacity>
     </View>
   )
