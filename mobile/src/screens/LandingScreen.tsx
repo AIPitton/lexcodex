@@ -34,7 +34,13 @@ const LandingScreen = ({
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [update, setUpdate] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState<{ id: number; text: string }[]>([])
+  const [data, setData] = useState<
+    {
+      chapter: string
+      id: number
+      text: string
+    }[]
+  >([])
   const [db, setDb] = useState<SQLiteDatabase | null>(null)
 
   const askPermission = () => {
@@ -119,13 +125,18 @@ const LandingScreen = ({
   const fetchDBData = (database: SQLiteDatabase) => {
     database.transaction((txn) => {
       txn.executeSql(
-        'SELECT id, text FROM verses WHERE id >= ? AND id <= ?',
+        'SELECT id, text, chapter FROM verses WHERE id >= ? AND id <= ?',
         [min, max],
         (sqlTxn, res) => {
-          const fetchedData: { id: number; text: string }[] = []
+          const fetchedData: { id: number; text: string; chapter: string }[] =
+            []
           for (let i = 0; i < res.rows.length; i++) {
             let item = res.rows.item(i)
-            fetchedData.push({ id: item.id, text: item.text })
+            fetchedData.push({
+              id: item.id,
+              text: item.text,
+              chapter: item.chapter,
+            })
           }
           setData(fetchedData)
           setIsLoading(false)
@@ -139,15 +150,24 @@ const LandingScreen = ({
     })
   }
 
-  const renderItem = ({ item }: { item: any }) => {
+  const renderItem = ({ item, index }: { item: any; index: number }) => {
+    const showChapter = index === 0 || item.chapter !== data[index - 1].chapter
+
     return (
-      <View className="flex-row justify-start items-start">
-        <Text className="text-sm font-bookerlyBold justify-center items-start text-cente pr-2 mt-1 ml-1">
-          {item.id}
-        </Text>
-        <Text className="flex-1 text-xl font-bookerly justify-center items-center">
-          {item.text}
-        </Text>
+      <View>
+        {showChapter && (
+          <Text className="text-lg font-bold justify-center items-start pr-2 mt-1 ml-1">
+            Chapter {item.chapter}
+          </Text>
+        )}
+        <View className="flex-row justify-start items-start">
+          <Text className="text-sm font-bookerlyBold justify-center items-start text-center pr-2 mt-1 ml-1">
+            {item.id}
+          </Text>
+          <Text className="flex-1 text-xl font-bookerly justify-center items-center">
+            {item.text}
+          </Text>
+        </View>
       </View>
     )
   }

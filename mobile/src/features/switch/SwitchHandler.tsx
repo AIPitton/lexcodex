@@ -1,5 +1,3 @@
-// SwitchHandler.tsx
-
 import { useDispatch } from 'react-redux'
 import { NavigationProp } from '@react-navigation/native'
 import { setMin, setMax, setConceal, setBook } from '../main/mainSlice'
