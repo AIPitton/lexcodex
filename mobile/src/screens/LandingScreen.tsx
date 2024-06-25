@@ -20,6 +20,7 @@ import TopButtons from '../components/TopButtons'
 import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
 import { openDatabase, SQLiteDatabase } from 'react-native-sqlite-storage'
+import Markdown from 'react-native-markdown-package'
 
 const LandingScreen = ({
   navigation,
@@ -164,9 +165,7 @@ const LandingScreen = ({
           <Text className="text-sm font-bookerlyBold justify-center items-start text-center pr-2 mt-1 ml-1">
             {item.id}
           </Text>
-          <Text className="flex-1 text-xl font-bookerly justify-center items-center">
-            {item.text}
-          </Text>
+          <Markdown styles={markdownStyle.collectiveMd}>{item.text}</Markdown>
         </View>
       </View>
     )
@@ -188,5 +187,53 @@ const LandingScreen = ({
     </View>
   )
 }
-
+const markdownStyle = {
+  singleLineMd: {
+    text: {
+      color: 'blue',
+      textAlign: 'right',
+    },
+    view: {
+      alignSelf: 'stretch',
+    },
+  },
+  collectiveMd: {
+    heading1: {
+      color: 'red',
+    },
+    heading2: {
+      color: 'green',
+      textAlign: 'right',
+    },
+    strong: {
+      color: 'blue',
+    },
+    em: {
+      color: 'cyan',
+    },
+    text: {
+      color: 'black',
+    },
+    blockQuoteText: {
+      color: 'grey',
+    },
+    blockQuoteSection: {
+      flexDirection: 'row',
+    },
+    blockQuoteSectionBar: {
+      width: 3,
+      height: null,
+      backgroundColor: '#DDDDDD',
+      marginRight: 15,
+    },
+    codeBlock: {
+      fontFamily: 'Courier',
+      fontWeight: '500',
+      backgroundColor: '#DDDDDD',
+    },
+    tableHeader: {
+      backgroundColor: 'grey',
+    },
+  },
+}
 export default LandingScreen
