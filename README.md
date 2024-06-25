@@ -1,5 +1,9 @@
 # LEXCODEX
 
+## Day 15 - Mobile: Markdown
+
+npm install react-native-markdown-package
+
 ## Day 14 - Mobile: Progress
 
 ## Day 13 - Mobile: Functionality Completed
