@@ -21,7 +21,7 @@ import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
 import { openDatabase, SQLiteDatabase } from 'react-native-sqlite-storage'
 import Markdown from 'react-native-markdown-package'
-
+import tw from '../lib/tailwind'
 const LandingScreen = ({
   navigation,
 }: {
@@ -153,7 +153,24 @@ const LandingScreen = ({
 
   const renderItem = ({ item, index }: { item: any; index: number }) => {
     const showChapter = index === 0 || item.chapter !== data[index - 1].chapter
-
+    const markdownStyle = {
+      singleLineMd: {
+        text: tw`text-blue-500 text-right`,
+        view: tw`self-stretch`,
+      },
+      collectiveMd: {
+        heading1: tw`text-b text-2xl font-bookerly`,
+        heading2: tw`text-green-500 text-right`,
+        strong: tw`text-blue-500`,
+        em: tw`text-cyan-500`,
+        text: tw`text-black`,
+        blockQuoteText: tw`text-gray-500`,
+        blockQuoteSection: tw`flex-row`,
+        blockQuoteSectionBar: tw`w-3 h-auto bg-gray-300 mr-4`,
+        codeBlock: [tw`font-mono font-semibold bg-gray-300`],
+        tableHeader: tw`bg-gray-500`,
+      },
+    }
     return (
       <View>
         {showChapter && (
@@ -187,53 +204,5 @@ const LandingScreen = ({
     </View>
   )
 }
-const markdownStyle = {
-  singleLineMd: {
-    text: {
-      color: 'blue',
-      textAlign: 'right',
-    },
-    view: {
-      alignSelf: 'stretch',
-    },
-  },
-  collectiveMd: {
-    heading1: {
-      color: 'red',
-    },
-    heading2: {
-      color: 'green',
-      textAlign: 'right',
-    },
-    strong: {
-      color: 'blue',
-    },
-    em: {
-      color: 'cyan',
-    },
-    text: {
-      color: 'black',
-    },
-    blockQuoteText: {
-      color: 'grey',
-    },
-    blockQuoteSection: {
-      flexDirection: 'row',
-    },
-    blockQuoteSectionBar: {
-      width: 3,
-      height: null,
-      backgroundColor: '#DDDDDD',
-      marginRight: 15,
-    },
-    codeBlock: {
-      fontFamily: 'Courier',
-      fontWeight: '500',
-      backgroundColor: '#DDDDDD',
-    },
-    tableHeader: {
-      backgroundColor: 'grey',
-    },
-  },
-}
+
 export default LandingScreen

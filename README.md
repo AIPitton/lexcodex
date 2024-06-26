@@ -1,5 +1,13 @@
 # LEXCODEX
 
+## Day 16 - Mobile: Progress
+
+npm install twrnc
+
+npm install postcss-cli autoprefixer
+
+npx react-native-asset
+
 ## Day 15 - Mobile: Markdown
 
 npm install react-native-markdown-package
