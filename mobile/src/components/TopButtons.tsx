@@ -8,14 +8,16 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import { iconSize } from '../utils/constants'
 import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
+import { setBookNo } from '../features/main/mainSlice'
 const TopButtons = ({
   navigation,
 }: {
   navigation: NavigationProp<RootStackParamList>
 }) => {
-  const { book } = useSelector((state: RootState) => state.main)
+  const { book, bookNo } = useSelector((state: RootState) => state.main)
+  const dispatch = useDispatch()
   return (
     <View className="flex-row h-909 items-center justify-center">
       <TouchableOpacity
@@ -32,14 +34,14 @@ const TopButtons = ({
         <Text>{book}</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Working')}
+        onPress={() => dispatch(setBookNo(bookNo - 1))}
         className="flex-1 items-center justify-center"
       >
         <MaterialCommunityIcons name="less-than" size={iconSize} color="grey" />
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate('Working')}
+        onPress={() => dispatch(setBookNo(bookNo + 1))}
         className="flex-1 items-center justify-center"
       >
         <MaterialCommunityIcons

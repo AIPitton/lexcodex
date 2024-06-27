@@ -6,6 +6,7 @@ import {
   setMax,
   setMin,
   setConceal,
+  setBookNo,
 } from '../features/main/mainSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
@@ -29,6 +30,10 @@ const WorkingScreen = ({
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [pressedButton, setPressedButton] = useState<number | null>(null)
+  const handlePress = (buttonNumber: number) => {
+    navigation.navigate('Landing')
+    dispatch(setBookNo(buttonNumber))
+  }
 
   return (
     <View className="flex-1 items-center justify-center">
@@ -41,15 +46,12 @@ const WorkingScreen = ({
           {[...Array(6)].map((_, colIndex) => (
             <WorkingButton
               key={`${rowIndex}-${colIndex}`}
-              onPress={() => setPressedButton(rowIndex * 6 + colIndex + 1)}
+              onPress={() => handlePress(rowIndex * 6 + colIndex + 1)}
               text={t(`working.${rowIndex * 6 + colIndex + 1}`)}
             />
           ))}
         </View>
       ))}
-      {pressedButton !== null && (
-        <SwitchHandler p0={pressedButton} navigation={navigation} />
-      )}
     </View>
   )
 }
