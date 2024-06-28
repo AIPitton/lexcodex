@@ -51,7 +51,7 @@ const TopButtons = ({
         />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Working')}
+        onPress={() => navigation.navigate('Search')}
         className="flex-1 items-center justify-center"
       >
         <Ionicons name="search" size={iconSize} color="grey" />
