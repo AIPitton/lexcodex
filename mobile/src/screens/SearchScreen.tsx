@@ -12,6 +12,9 @@ const SearchScreen = ({
   return (
     <View className="flex-1 items-center justify-center">
       <TopButtons navigation={navigation} />
+      <View className="flex-1 items-center justify-center">
+        <Text>Search Screen</Text>
+      </View>
     </View>
   )
 }

@@ -29,6 +29,7 @@ import { RootStackParamList } from '../navigation/Router'
 import { openDatabase, SQLiteDatabase } from 'react-native-sqlite-storage'
 import Markdown from 'react-native-markdown-package'
 import tw from '../lib/tailwind'
+import { fetchDBData } from '../features/sqlite/fetchDBData'
 const LandingScreen = ({
   navigation,
 }: {
@@ -475,39 +476,11 @@ const LandingScreen = ({
         location: 'default',
       })
       setDb(database)
-      fetchDBData(database)
+      fetchDBData(database, min, max, setData, setIsLoading, dispatch)
     } catch (error) {
       console.error('Error fetching data:', error)
       setIsLoading(false)
     }
-  }
-
-  const fetchDBData = (database: SQLiteDatabase) => {
-    database.transaction((txn) => {
-      txn.executeSql(
-        'SELECT id, text, chapter FROM verses WHERE id >= ? AND id <= ?',
-        [min, max],
-        (sqlTxn, res) => {
-          const fetchedData: { id: number; text: string; chapter: string }[] =
-            []
-          for (let i = 0; i < res.rows.length; i++) {
-            let item = res.rows.item(i)
-            fetchedData.push({
-              id: item.id,
-              text: item.text,
-              chapter: item.chapter,
-            })
-          }
-          setData(fetchedData)
-          setIsLoading(false)
-          dispatch(setConceal(false))
-        },
-        (error) => {
-          console.log('Error fetching categories: ' + error.message)
-          setIsLoading(false)
-        }
-      )
-    })
   }
 
   const renderItem = ({ item, index }: { item: any; index: number }) => {
