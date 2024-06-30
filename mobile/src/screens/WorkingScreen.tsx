@@ -17,7 +17,6 @@ import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
 import TopButtons from '../components/TopButtons'
 import { openDatabase, SQLiteDatabase } from 'react-native-sqlite-storage'
-import SwitchHandler from '../features/switch/SwitchHandler'
 const WorkingScreen = ({
   navigation,
 }: {

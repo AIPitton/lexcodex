@@ -3,16 +3,12 @@ import { NavigationProp } from '@react-navigation/native'
 import { setMin, setMax, setConceal, setBook } from '../main/mainSlice'
 import { useTranslation } from 'react-i18next'
 
-interface SwitchHandlerProps {
-  p0: number
-  navigation: NavigationProp<any>
-}
-
-const SwitchHandler = ({ p0, navigation }: SwitchHandlerProps) => {
+const useSwitchHandler = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const handleSwitch = (p0: number) => {
-    switch (p0) {
+
+  const switchHandler = (bookNo: number) => {
+    switch (bookNo) {
       case 1:
         dispatch(setMin(0))
         dispatch(setMax(1533))
@@ -348,8 +344,7 @@ const SwitchHandler = ({ p0, navigation }: SwitchHandlerProps) => {
     }
   }
 
-  handleSwitch(p0)
-  return null
+  return { switchHandler }
 }
 
-export default SwitchHandler
+export default useSwitchHandler
