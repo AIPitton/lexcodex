@@ -34,14 +34,22 @@ const TopButtons = ({
         <Text>{book}</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => dispatch(setBookNo(bookNo - 1))}
+        onPress={() => {
+          if (bookNo > 1) {
+            dispatch(setBookNo(bookNo - 1))
+          }
+        }}
         className="flex-1 items-center justify-center"
       >
         <MaterialCommunityIcons name="less-than" size={iconSize} color="grey" />
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => dispatch(setBookNo(bookNo + 1))}
+        onPress={() => {
+          if (bookNo < 66) {
+            dispatch(setBookNo(bookNo + 1))
+          }
+        }}
         className="flex-1 items-center justify-center"
       >
         <MaterialCommunityIcons

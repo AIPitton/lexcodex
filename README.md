@@ -1,5 +1,9 @@
 # LEXCODEX
 
+## Day 17 - Mobile: Copy to clipboard
+
+npm install @react-native-clipboard/clipboard --legacy-peer-deps
+
 ## Day 17 - Mobile: SearchScreen
 
 ## Day 16 - Mobile: Progress
