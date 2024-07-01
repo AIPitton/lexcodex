@@ -99,6 +99,7 @@ const DataList = ({
       .join('\n')
     Clipboard.setString(selectedText)
     setSelectedRows(new Set())
+    console.log(selectedText)
   }
 
   const renderItem = ({ item, index }: { item: any; index: number }) => {
