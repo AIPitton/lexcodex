@@ -6,6 +6,9 @@ import {
   Platform,
   ActivityIndicator,
   TouchableOpacity,
+  Alert,
+  Modal,
+  Button,
 } from 'react-native'
 import RNFS from 'react-native-fs'
 import { openDatabase, SQLiteDatabase } from 'react-native-sqlite-storage'
@@ -42,6 +45,8 @@ const DataList = ({
   >([])
   const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set())
   const [db, setDb] = useState<SQLiteDatabase | null>(null)
+  const [selectedText, setSelectedText] = useState('')
+  const [modalVisible, setModalVisible] = useState(false)
 
   useEffect(() => {
     fetchData()
@@ -91,15 +96,21 @@ const DataList = ({
   }
 
   const handleLongPress = () => {
-    const selectedText = Array.from(selectedRows)
+    const text = Array.from(selectedRows)
       .map((rowId) => {
         const row = data.find((item) => item.id === rowId)
         return row ? row.text : ''
       })
       .join('\n')
-    Clipboard.setString(selectedText)
+    Clipboard.setString(text)
+    setSelectedText(text)
+    setModalVisible(true)
     setSelectedRows(new Set())
-    console.log(selectedText)
+  }
+
+  const closeModal = () => {
+    setModalVisible(false)
+    setSelectedText('')
   }
 
   const renderItem = ({ item, index }: { item: any; index: number }) => {
@@ -132,7 +143,9 @@ const DataList = ({
           <Text className="text-sm font-bookerlyBold justify-center items-start text-center pr-2 mt-1 ml-1">
             {item.id}
           </Text>
-          <Markdown styles={markdownStyle.collectiveMd}>{item.text}</Markdown>
+          <View className="flex-1 pr-2">
+            <Markdown styles={markdownStyle.collectiveMd}>{item.text}</Markdown>
+          </View>
         </View>
       </TouchableOpacity>
     )
@@ -149,6 +162,14 @@ const DataList = ({
           keyExtractor={(item) => item.id.toString()}
         />
       )}
+      <Modal visible={modalVisible} animationType="slide">
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Text>{selectedText}</Text>
+          <Button title="Close" onPress={closeModal} />
+        </View>
+      </Modal>
     </View>
   )
 }

@@ -95,8 +95,8 @@ const LandingScreen = ({
     <View className="flex-1">
       <TopButtons navigation={navigation} />
       <Button title="Download" onPress={() => askPermission()} />
-      <Button title="min" onPress={() => console.log(min)} />
-      <Button title="max" onPress={() => console.log(max)} />
+      {/* <Button title="min" onPress={() => console.log(min)} />
+      <Button title="max" onPress={() => console.log(max)} /> */}
       <DataList min={min} max={max} searchQuery={''} />
     </View>
   )
