@@ -1,22 +1,21 @@
-import { Platform, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
-import WorkingButton from '../components/WorkingButton'
+import React, { useState } from 'react'
 import {
-  setBookiliad,
-  setMax,
-  setMin,
-  setConceal,
-  setBookNo,
-} from '../features/main/mainSlice'
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  Button,
+  FlatList,
+} from 'react-native'
+import WorkingButton from '../components/WorkingButton'
+import { setBookNo } from '../features/main/mainSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import { useTranslation } from 'react-i18next'
-import RNFS from 'react-native-fs'
-import { use } from 'i18next'
 import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
 import TopButtons from '../components/TopButtons'
-import { openDatabase, SQLiteDatabase } from 'react-native-sqlite-storage'
+
 const WorkingScreen = ({
   navigation,
 }: {
@@ -29,9 +28,17 @@ const WorkingScreen = ({
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [pressedButton, setPressedButton] = useState<number | null>(null)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [modalText, setModalText] = useState('')
+
   const handlePress = (buttonNumber: number) => {
     navigation.navigate('Landing')
     dispatch(setBookNo(buttonNumber))
+  }
+
+  const handleLongPress = (text: string) => {
+    setModalText(text)
+    setModalVisible(true)
   }
 
   return (
@@ -42,15 +49,34 @@ const WorkingScreen = ({
           key={rowIndex}
           className="flex-1 flex-row items-center justify-center "
         >
-          {[...Array(6)].map((_, colIndex) => (
-            <WorkingButton
-              key={`${rowIndex}-${colIndex}`}
-              onPress={() => handlePress(rowIndex * 6 + colIndex + 1)}
-              text={t(`working.${rowIndex * 6 + colIndex + 1}`)}
-            />
-          ))}
+          {[...Array(6)].map((_, colIndex) => {
+            const buttonNumber = rowIndex * 6 + colIndex + 1
+            const buttonText = t(`working.${buttonNumber}`)
+            return (
+              <WorkingButton
+                key={`${rowIndex}-${colIndex}`}
+                onPress={() => handlePress(buttonNumber)}
+                onLongPress={() => handleLongPress(buttonText)}
+                text={buttonText}
+              />
+            )
+          })}
         </View>
       ))}
+
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View className="flex-1 justify-center items-center bg-gray-800 bg-opacity-50">
+          <View className="bg-white p-5 rounded-lg">
+            <Text>{modalText}</Text>
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
     </View>
   )
 }
