@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Button, Platform } from 'react-native'
+import { View, Button, Modal, Text, Platform } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
@@ -13,6 +13,8 @@ import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
 import DataList from '../features/data/DataList'
 import useSwitchHandler from '../features/switch/useSwitchHandler'
+import ChapterButton from '../components/ChapterButton'
+import TotalChapters from '../utils/TotalChapters'
 
 const LandingScreen = ({
   navigation,
@@ -26,6 +28,8 @@ const LandingScreen = ({
   const dispatch = useDispatch()
   const isFirstRender = useRef(true)
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [modalText, setModalText] = useState('')
+  const [chapterButtons, setChapterButtons] = useState<number[]>([])
   const [update, setUpdate] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const { switchHandler } = useSwitchHandler()
@@ -91,18 +95,67 @@ const LandingScreen = ({
     isFirstRender.current = false
   }, [update])
 
+  const handleOpenModalForCurrentBook = () => {
+    const totalChapters = TotalChapters[bookNo.toString()] || 'Unknown'
+    const buttonText = t(`working.${bookNo}`)
+    setModalText(`${buttonText}: ${totalChapters} chapters`)
+
+    const chapters = Array.from(
+      { length: Number(totalChapters) },
+      (_, i) => i + 1
+    )
+    setChapterButtons(chapters)
+
+    setIsModalVisible(true)
+  }
+
   return (
     <View className="flex-1">
       <TopButtons
         navigation={navigation}
-        openModalForCurrentBook={function (): void {
-          throw new Error('Function not implemented.')
-        }}
+        openModalForCurrentBook={handleOpenModalForCurrentBook}
       />
       <Button title="Download" onPress={() => askPermission()} />
-      {/* <Button title="min" onPress={() => console.log(min)} />
-      <Button title="max" onPress={() => console.log(max)} /> */}
       <DataList min={min} max={max} searchQuery={''} />
+
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={isModalVisible}
+        onRequestClose={() => setIsModalVisible(false)}
+      >
+        <View className="flex-1 justify-center items-center bg-gray-800 bg-opacity-50">
+          <Button title="Close" onPress={() => setIsModalVisible(false)} />
+          <Text>{modalText}</Text>
+          {[...Array(Math.ceil(chapterButtons.length / 6))].map(
+            (_, rowIndex) => (
+              <View
+                key={rowIndex}
+                className="flex-row items-center justify-center"
+              >
+                {[...Array(6)].map((_, colIndex) => {
+                  const buttonIndex = rowIndex * 6 + colIndex
+                  const chapterNumber = chapterButtons[buttonIndex]
+                  if (chapterNumber == null) {
+                    return (
+                      <View key={`empty-${buttonIndex}`} className="flex-1" />
+                    )
+                  }
+                  return (
+                    <ChapterButton
+                      key={chapterNumber}
+                      onPress={() =>
+                        console.log(`Chapter ${chapterNumber} pressed`)
+                      }
+                      text={`${chapterNumber}`}
+                    />
+                  )
+                })}
+              </View>
+            )
+          )}
+        </View>
+      </Modal>
     </View>
   )
 }
