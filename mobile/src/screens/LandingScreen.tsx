@@ -93,7 +93,12 @@ const LandingScreen = ({
 
   return (
     <View className="flex-1">
-      <TopButtons navigation={navigation} />
+      <TopButtons
+        navigation={navigation}
+        openModalForCurrentBook={function (): void {
+          throw new Error('Function not implemented.')
+        }}
+      />
       <Button title="Download" onPress={() => askPermission()} />
       {/* <Button title="min" onPress={() => console.log(min)} />
       <Button title="max" onPress={() => console.log(max)} /> */}

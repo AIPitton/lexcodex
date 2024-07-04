@@ -1,20 +1,22 @@
-import { View, Text, Touchable, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Octicons from 'react-native-vector-icons/Octicons'
-
 import { iconSize } from '../utils/constants'
 import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import { setBookNo } from '../features/main/mainSlice'
+
 const TopButtons = ({
   navigation,
+  openModalForCurrentBook,
 }: {
   navigation: NavigationProp<RootStackParamList>
+  openModalForCurrentBook: () => void
 }) => {
   const { book, bookNo } = useSelector((state: RootState) => state.main)
   const dispatch = useDispatch()
@@ -27,10 +29,9 @@ const TopButtons = ({
         <MaterialCommunityIcons name="menu" size={iconSize} color="grey" />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Working')}
+        onPress={openModalForCurrentBook}
         className="flex-1 items-center justify-center"
       >
-        {/* <AntDesign name="close" size={iconSize} color="grey" /> */}
         <Text>{book}</Text>
       </TouchableOpacity>
       <TouchableOpacity
