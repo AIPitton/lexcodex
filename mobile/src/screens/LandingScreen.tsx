@@ -117,45 +117,6 @@ const LandingScreen = ({
       />
       <Button title="Download" onPress={() => askPermission()} />
       <DataList min={min} max={max} searchQuery={''} />
-
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={isModalVisible}
-        onRequestClose={() => setIsModalVisible(false)}
-      >
-        <View className="flex-1 justify-center items-center bg-gray-800 bg-opacity-50">
-          <Button title="Close" onPress={() => setIsModalVisible(false)} />
-          <Text>{modalText}</Text>
-          {[...Array(Math.ceil(chapterButtons.length / 6))].map(
-            (_, rowIndex) => (
-              <View
-                key={rowIndex}
-                className="flex-row items-center justify-center"
-              >
-                {[...Array(6)].map((_, colIndex) => {
-                  const buttonIndex = rowIndex * 6 + colIndex
-                  const chapterNumber = chapterButtons[buttonIndex]
-                  if (chapterNumber == null) {
-                    return (
-                      <View key={`empty-${buttonIndex}`} className="flex-1" />
-                    )
-                  }
-                  return (
-                    <ChapterButton
-                      key={chapterNumber}
-                      onPress={() =>
-                        console.log(`Chapter ${chapterNumber} pressed`)
-                      }
-                      text={`${chapterNumber}`}
-                    />
-                  )
-                })}
-              </View>
-            )
-          )}
-        </View>
-      </Modal>
     </View>
   )
 }

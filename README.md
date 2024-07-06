@@ -1,5 +1,7 @@
 # LEXCODEX
 
+## Day 18
+
 ## Day 17 - Mobile: Copy to clipboard
 
 npm install @react-native-clipboard/clipboard@1.14.1 --force
