@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Button, Modal, Text, Platform } from 'react-native'
+import { View, Button, Platform } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
@@ -10,11 +10,11 @@ import { getDownloadPermissionAndroid } from '../features/download/downloadPermi
 import { setUpdateRequired } from '../features/main/mainSlice'
 import TopButtons from '../components/TopButtons'
 import { NavigationProp } from '@react-navigation/native'
-import { RootStackParamList } from '../navigation/Router'
 import DataList from '../features/data/DataList'
 import useSwitchHandler from '../features/switch/useSwitchHandler'
-import ChapterButton from '../components/ChapterButton'
 import TotalChapters from '../utils/TotalChapters'
+import ChapterModal from '../components/ChapterModal'
+import { RootStackParamList } from '../navigation/Router'
 
 const LandingScreen = ({
   navigation,
@@ -109,6 +109,10 @@ const LandingScreen = ({
     setIsModalVisible(true)
   }
 
+  const handlePressChapter = (chapterNumber: number) => {
+    console.log(`Chapter ${chapterNumber} pressed`)
+  }
+
   return (
     <View className="flex-1">
       <TopButtons
@@ -117,6 +121,14 @@ const LandingScreen = ({
       />
       <Button title="Download" onPress={() => askPermission()} />
       <DataList min={min} max={max} searchQuery={''} />
+
+      <ChapterModal
+        visible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+        modalText={modalText}
+        chapterButtons={chapterButtons}
+        onPressChapter={handlePressChapter}
+      />
     </View>
   )
 }

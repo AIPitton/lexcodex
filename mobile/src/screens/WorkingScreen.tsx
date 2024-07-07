@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, Modal, Button } from 'react-native'
+import { View } from 'react-native'
 import WorkingButton from '../components/WorkingButton'
-import ChapterButton from '../components/ChapterButton'
 import { setBookNo } from '../features/main/mainSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import { useTranslation } from 'react-i18next'
 import { NavigationProp } from '@react-navigation/native'
-import { RootStackParamList } from '../navigation/Router'
 import TopButtons from '../components/TopButtons'
 import TotalChapters from '../utils/TotalChapters'
+import ChapterModal from '../components/ChapterModal'
+import { RootStackParamList } from '../navigation/Router'
 
 const WorkingScreen = ({
   navigation,
@@ -20,7 +20,6 @@ const WorkingScreen = ({
 
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const [pressedButton, setPressedButton] = useState<number | null>(null)
   const [modalVisible, setModalVisible] = useState(false)
   const [modalText, setModalText] = useState('')
   const [chapterButtons, setChapterButtons] = useState<number[]>([])
@@ -44,7 +43,7 @@ const WorkingScreen = ({
     setModalVisible(true)
   }
 
-  const handlePressRef = (chapterNumber: number) => {
+  const handlePressChapter = (chapterNumber: number) => {
     console.log(`Chapter ${chapterNumber} pressed`)
   }
 
@@ -88,42 +87,13 @@ const WorkingScreen = ({
         </View>
       ))}
 
-      <Modal
-        animationType="slide"
-        transparent={false}
+      <ChapterModal
         visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View className="flex-1 justify-center items-center bg-gray-800 bg-opacity-50">
-          <Button title="Close" onPress={() => setModalVisible(false)} />
-          <Text>{modalText}</Text>
-          {[...Array(Math.ceil(chapterButtons.length / 6))].map(
-            (_, rowIndex) => (
-              <View
-                key={rowIndex}
-                className="flex-row items-center justify-center"
-              >
-                {[...Array(6)].map((_, colIndex) => {
-                  const buttonIndex = rowIndex * 6 + colIndex
-                  const chapterNumber = chapterButtons[buttonIndex]
-                  if (chapterNumber == null) {
-                    return (
-                      <View key={`empty-${buttonIndex}`} className="flex-1" />
-                    )
-                  }
-                  return (
-                    <ChapterButton
-                      key={chapterNumber}
-                      onPress={() => handlePressRef(chapterNumber)}
-                      text={`${chapterNumber}`}
-                    />
-                  )
-                })}
-              </View>
-            )
-          )}
-        </View>
-      </Modal>
+        onClose={() => setModalVisible(false)}
+        modalText={modalText}
+        chapterButtons={chapterButtons}
+        onPressChapter={handlePressChapter}
+      />
     </View>
   )
 }
