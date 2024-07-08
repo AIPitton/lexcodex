@@ -28,6 +28,7 @@ const LandingScreen = ({
   const dispatch = useDispatch()
   const isFirstRender = useRef(true)
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isChapterModalVisible, setIsChapterModalVisible] = useState(false)
   const [modalText, setModalText] = useState('')
   const [chapterButtons, setChapterButtons] = useState<number[]>([])
   const [update, setUpdate] = useState(0)
@@ -106,7 +107,7 @@ const LandingScreen = ({
     )
     setChapterButtons(chapters)
 
-    setIsModalVisible(true)
+    setIsChapterModalVisible(true)
   }
 
   const handlePressChapter = (chapterNumber: number) => {
@@ -123,8 +124,8 @@ const LandingScreen = ({
       <DataList min={min} max={max} searchQuery={''} />
 
       <ChapterModal
-        visible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
+        visible={isChapterModalVisible}
+        onClose={() => setIsChapterModalVisible(false)}
         modalText={modalText}
         chapterButtons={chapterButtons}
         onPressChapter={handlePressChapter}
