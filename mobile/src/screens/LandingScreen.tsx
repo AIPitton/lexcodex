@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Button, Platform } from 'react-native'
+import { View, Button, Platform, FlatList } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
@@ -34,6 +34,8 @@ const LandingScreen = ({
   const [update, setUpdate] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const { switchHandler } = useSwitchHandler()
+
+  const flatListRef = useRef<FlatList>(null)
 
   useEffect(() => {
     if (bookNo) {
@@ -114,6 +116,10 @@ const LandingScreen = ({
     console.log(`Chapter ${chapterNumber} pressed`)
   }
 
+  const handleJumpToItem = () => {
+    flatListRef.current?.scrollToItem({ item: { id: 12050 }, animated: true })
+  }
+
   return (
     <View className="flex-1">
       <TopButtons
@@ -121,7 +127,8 @@ const LandingScreen = ({
         openModalForCurrentBook={handleOpenModalForCurrentBook}
       />
       <Button title="Download" onPress={() => askPermission()} />
-      <DataList min={min} max={max} searchQuery={''} />
+      <Button title="Jump to Item 12050" onPress={handleJumpToItem} />
+      <DataList min={min} max={max} searchQuery={''} ref={flatListRef} />
 
       <ChapterModal
         visible={isChapterModalVisible}

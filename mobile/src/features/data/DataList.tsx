@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, forwardRef } from 'react'
 import {
   View,
   Text,
@@ -18,15 +18,10 @@ import { useDispatch } from 'react-redux'
 import { fetchDBData } from '../sqlite/fetchDBData'
 import Clipboard from '@react-native-clipboard/clipboard'
 
-const DataList = ({
-  min,
-  max,
-  searchQuery,
-}: {
-  min: number
-  max: number
-  searchQuery: string
-}) => {
+const DataList = forwardRef<
+  FlatList,
+  { min: number; max: number; searchQuery: string }
+>(({ min, max, searchQuery }, ref) => {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState<
@@ -160,6 +155,7 @@ const DataList = ({
           data={filteredData}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
+          ref={ref}
         />
       )}
       <Modal visible={modalVisible} animationType="slide">
@@ -172,6 +168,6 @@ const DataList = ({
       </Modal>
     </View>
   )
-}
+})
 
 export default DataList
