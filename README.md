@@ -1,6 +1,6 @@
 # LEXCODEX
 
-## Day 18
+## Day 18 - Mobile: FlatList Nav
 
 ## Day 17 - Mobile: Copy to clipboard
 
