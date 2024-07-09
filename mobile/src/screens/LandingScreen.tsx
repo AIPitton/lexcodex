@@ -117,7 +117,21 @@ const LandingScreen = ({
   }
 
   const handleJumpToItem = () => {
-    flatListRef.current?.scrollToItem({ item: { id: 12050 }, animated: true })
+    console.log('Jump to Item 12050 button pressed')
+    flatListRef.current?.scrollToIndex({ index: 50, animated: true })
+  }
+
+  const getItemLayout = (data: any, index: number) => ({
+    length: 100,
+    offset: 100 * index,
+    index,
+  })
+
+  const onScrollToIndexFailed = (info: { index: any }) => {
+    const wait = new Promise((resolve) => setTimeout(resolve, 500))
+    wait.then(() => {
+      flatListRef.current?.scrollToIndex({ index: info.index, animated: true })
+    })
   }
 
   return (
@@ -128,7 +142,14 @@ const LandingScreen = ({
       />
       <Button title="Download" onPress={() => askPermission()} />
       <Button title="Jump to Item 12050" onPress={handleJumpToItem} />
-      <DataList min={min} max={max} searchQuery={''} ref={flatListRef} />
+      <DataList
+        min={min}
+        max={max}
+        searchQuery={''}
+        ref={flatListRef}
+        getItemLayout={getItemLayout}
+        onScrollToIndexFailed={onScrollToIndexFailed}
+      />
 
       <ChapterModal
         visible={isChapterModalVisible}

@@ -20,8 +20,17 @@ import Clipboard from '@react-native-clipboard/clipboard'
 
 const DataList = forwardRef<
   FlatList,
-  { min: number; max: number; searchQuery: string }
->(({ min, max, searchQuery }, ref) => {
+  {
+    min: number
+    max: number
+    searchQuery: string
+    getItemLayout: (
+      data: any,
+      index: any
+    ) => { length: number; offset: number; index: number }
+    onScrollToIndexFailed: (info: any) => void
+  }
+>(({ min, max, searchQuery, getItemLayout, onScrollToIndexFailed }, ref) => {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState<
@@ -156,6 +165,8 @@ const DataList = forwardRef<
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           ref={ref}
+          getItemLayout={getItemLayout}
+          onScrollToIndexFailed={onScrollToIndexFailed}
         />
       )}
       <Modal visible={modalVisible} animationType="slide">
