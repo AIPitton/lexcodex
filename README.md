@@ -1,5 +1,11 @@
 # LEXCODEX
 
+## Day 19 - Mobile: Flags
+
+npm install --save react-native-country-flag --legacy-peer-deps
+
+npm install --force
+
 ## Day 18 - Mobile: FlatList Nav
 
 ## Day 17 - Mobile: Copy to clipboard
