@@ -10,7 +10,7 @@ import { RootStackParamList } from '../navigation/Router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
 import { setBookNo } from '../features/main/mainSlice'
-
+import CountryFlag from 'react-native-country-flag'
 const TopButtons = ({
   navigation,
   openModalForCurrentBook,
@@ -70,6 +70,12 @@ const TopButtons = ({
         className="flex-1 items-center justify-center"
       >
         <Octicons name="plus" size={iconSize} color="grey" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => console.log('de')}
+        className="flex-1 items-center justify-center"
+      >
+        <CountryFlag isoCode="de" size={20} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('Settings')}
