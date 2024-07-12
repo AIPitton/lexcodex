@@ -1,8 +1,14 @@
 # LEXCODEX
 
+## Day 20 - Mobile: TopButtons Languages Modal
+
 ## Day 19 - Mobile: Flags
 
 npm install --save react-native-country-flag --legacy-peer-deps
+
+npm install react-native-dropdown-picker --legacy-peer-deps
+
+delete node_modules
 
 npm install --force
 

@@ -1,4 +1,9 @@
 {
+  "topbuttons": {
+    "roLanguage": "Román",
+    "huLanguage": "Magyar",
+    "deLanguage": "Német"
+  },
   "settings": {
     "changeLanguage": "Nyelv kiválasztása",
     "changeFontSize": "Betűméret megváltoztatása",

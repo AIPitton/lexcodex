@@ -1,4 +1,9 @@
 {
+  "topbuttons": {
+    "roLanguage": "Rumänisch",
+    "huLanguage": "Ungarisch",
+    "deLanguage": "Deutsch"
+  },
   "settings": {
     "changeLanguage": "Sprache auswählen",
     "changeFontSize": "Schriftgröße ändern",

@@ -1,4 +1,9 @@
 {
+  "topbuttons": {
+    "roLanguage": "Română",
+    "huLanguage": "Maghiară",
+    "deLanguage": "Germană"
+  },
   "settings": {
     "changeLanguage": "Selectează limba",
     "changeFontSize": "Schimbă fontul",
