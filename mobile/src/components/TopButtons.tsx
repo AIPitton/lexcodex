@@ -8,7 +8,7 @@ import { NavigationProp } from '@react-navigation/native'
 import { RootStackParamList } from '../navigation/Router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
-import { setBookNo } from '../features/main/mainSlice'
+import { setBookNo, setShowPlus } from '../features/main/mainSlice'
 import CountryFlag from 'react-native-country-flag'
 import { useTranslation } from 'react-i18next'
 const TopButtons = ({
@@ -19,7 +19,9 @@ const TopButtons = ({
   openModalForCurrentBook: () => void
 }) => {
   const { t } = useTranslation()
-  const { book, bookNo } = useSelector((state: RootState) => state.main)
+  const { book, bookNo, showPlus } = useSelector(
+    (state: RootState) => state.main
+  )
   const dispatch = useDispatch()
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedCountry, setSelectedCountry] = useState('de')
@@ -81,7 +83,7 @@ const TopButtons = ({
         <Ionicons name="search" size={iconSize} color="grey" />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log('first')}
+        onPress={() => dispatch(setShowPlus(!showPlus))}
         className="flex-1 items-center justify-center"
       >
         <Octicons name="plus" size={iconSize} color="grey" />

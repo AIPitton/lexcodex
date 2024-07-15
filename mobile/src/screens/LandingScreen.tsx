@@ -21,9 +21,8 @@ const LandingScreen = ({
 }: {
   navigation: NavigationProp<RootStackParamList>
 }) => {
-  const { updateRequired, localesPersist, min, max, bookNo } = useSelector(
-    (state: RootState) => state.main
-  )
+  const { updateRequired, localesPersist, min, max, bookNo, showPlus } =
+    useSelector((state: RootState) => state.main)
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const isFirstRender = useRef(true)
@@ -142,6 +141,7 @@ const LandingScreen = ({
       />
       <Button title="Download" onPress={() => askPermission()} />
       <Button title="Jump to Item 12050" onPress={handleJumpToItem} />
+      <Button title="show plus" onPress={() => console.log(showPlus)} />
       <DataList
         min={min}
         max={max}

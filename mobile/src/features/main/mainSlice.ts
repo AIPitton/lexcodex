@@ -15,6 +15,7 @@ export interface MainState {
   conceal: boolean
   book: string
   bookNo: number
+  showPlus: boolean
 }
 
 const initialState: MainState = {
@@ -26,6 +27,7 @@ const initialState: MainState = {
   conceal: false,
   book: '',
   bookNo: 0,
+  showPlus: false,
 }
 
 export const mainSlice = createSlice({
@@ -56,6 +58,9 @@ export const mainSlice = createSlice({
     setBookNo: (state, action) => {
       state.bookNo = action.payload
     },
+    setShowPlus: (state, action) => {
+      state.showPlus = action.payload
+    },
   },
 })
 
@@ -68,6 +73,7 @@ export const {
   setConceal,
   setBook,
   setBookNo,
+  setShowPlus,
 } = mainSlice.actions
 
 export default mainSlice.reducer
