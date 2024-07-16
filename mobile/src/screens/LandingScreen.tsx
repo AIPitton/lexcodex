@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Button, Platform, FlatList } from 'react-native'
+import { View, Button, Platform, FlatList, StyleSheet } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../app/store'
@@ -14,6 +14,7 @@ import DataList from '../features/data/DataList'
 import useSwitchHandler from '../features/switch/useSwitchHandler'
 import TotalChapters from '../utils/TotalChapters'
 import ChapterModal from '../components/ChapterModal'
+import PlusScreen from './PlusScreen' // Import PlusScreen
 import { RootStackParamList } from '../navigation/Router'
 
 const LandingScreen = ({
@@ -134,23 +135,45 @@ const LandingScreen = ({
   }
 
   return (
-    <View className="flex-1">
+    <View style={styles.container}>
       <TopButtons
         navigation={navigation}
         openModalForCurrentBook={handleOpenModalForCurrentBook}
       />
-      <Button title="Download" onPress={() => askPermission()} />
-      <Button title="Jump to Item 12050" onPress={handleJumpToItem} />
-      <Button title="show plus" onPress={() => console.log(showPlus)} />
-      <DataList
-        min={min}
-        max={max}
-        searchQuery={''}
-        ref={flatListRef}
-        getItemLayout={getItemLayout}
-        onScrollToIndexFailed={onScrollToIndexFailed}
-      />
-
+      {showPlus ? (
+        <View style={styles.splitContainer}>
+          <View style={styles.topHalf}>
+            <Button title="Download" onPress={() => askPermission()} />
+            <Button title="Jump to Item 12050" onPress={handleJumpToItem} />
+            <Button title="show plus" onPress={() => console.log(showPlus)} />
+            <DataList
+              min={min}
+              max={max}
+              searchQuery={''}
+              ref={flatListRef}
+              getItemLayout={getItemLayout}
+              onScrollToIndexFailed={onScrollToIndexFailed}
+            />
+          </View>
+          <View style={styles.bottomHalf}>
+            <PlusScreen />
+          </View>
+        </View>
+      ) : (
+        <View style={styles.fullContainer}>
+          <Button title="Download" onPress={() => askPermission()} />
+          <Button title="Jump to Item 12050" onPress={handleJumpToItem} />
+          <Button title="show plus" onPress={() => console.log(showPlus)} />
+          <DataList
+            min={min}
+            max={max}
+            searchQuery={''}
+            ref={flatListRef}
+            getItemLayout={getItemLayout}
+            onScrollToIndexFailed={onScrollToIndexFailed}
+          />
+        </View>
+      )}
       <ChapterModal
         visible={isChapterModalVisible}
         onClose={() => setIsChapterModalVisible(false)}
@@ -161,5 +184,24 @@ const LandingScreen = ({
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  fullContainer: {
+    flex: 1,
+  },
+  splitContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  topHalf: {
+    flex: 1,
+  },
+  bottomHalf: {
+    flex: 1,
+  },
+})
 
 export default LandingScreen
