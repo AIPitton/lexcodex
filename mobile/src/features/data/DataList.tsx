@@ -81,7 +81,7 @@ const DataList = forwardRef<
         const filePath =
           language === 'en'
             ? `${baseDirectory}/LexCodex/book.sqlite3`
-            : `${baseDirectory}/LexCodex/bookDe.sqlite3`
+            : `${baseDirectory}/LexCodex/book.sqlite3`
         const database = await openDatabase({
           name: filePath,
           location: 'default',
