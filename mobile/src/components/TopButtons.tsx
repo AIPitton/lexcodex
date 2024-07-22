@@ -38,7 +38,7 @@ const TopButtons = ({
   }
 
   return (
-    <View className="flex-row h-909 items-center justify-center">
+    <View className="flex-row items-center justify-center">
       <TouchableOpacity
         onPress={() => navigation.navigate('Working')}
         className="flex-1 items-center justify-center"
