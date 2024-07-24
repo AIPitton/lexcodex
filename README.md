@@ -1,6 +1,6 @@
 # LEXCODEX
 
-## Day 22 - Mobile:
+## Day 22 - Mobile: 
 
 ## Day 21 - Mobile: TopButtons Plus
 

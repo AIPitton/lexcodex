@@ -157,7 +157,7 @@ const LandingScreen = ({
             />
           </View>
           <View className="flex-1">
-            <PlusScreen />
+            <PlusScreen navigation={undefined} />
           </View>
         </View>
       ) : (
