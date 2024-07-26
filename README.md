@@ -2,6 +2,8 @@
 
 ## Day 22 - Mobile: FlatList issue
 
+✅ Debugging
+
 ## Day 21 - Mobile: TopButtons Plus
 
 ## Day 20 - Mobile: TopButtons Languages Modal
