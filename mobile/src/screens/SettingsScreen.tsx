@@ -73,7 +73,7 @@ const SettingsScreen = ({
         text={t('settings.changeFontColor')}
       />
       <SettingsRow
-        onPress={changeBackground}
+        onPress={() => navigation.navigate('Problem')}
         text={t('settings.changeBackground')}
       />
     </View>

@@ -4,11 +4,13 @@ import LandingScreen from '../screens/LandingScreen'
 import WorkingScreen from '../screens/WorkingScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import SearchScreen from '../screens/SearchScreen'
+import ProblemScreen from '../screens/ProblemScreen'
 export type RootStackParamList = {
   Landing: undefined
   Working: undefined
   Settings: undefined
   Search: undefined
+  Problem: undefined
 }
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -34,6 +36,11 @@ const Navigator = () => {
         <Stack.Screen
           name="Search"
           component={SearchScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Problem"
+          component={ProblemScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
