@@ -1,10 +1,6 @@
 # LEXCODEX
 
-## Day 22 - Mobile: FlatList issue
-
-✅ Debugging
-
-✅ Debugging
+## Day 22 - Mobile: FlatList Fixed
 
 ## Day 21 - Mobile: TopButtons Plus
 
