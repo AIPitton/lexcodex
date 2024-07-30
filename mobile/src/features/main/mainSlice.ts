@@ -16,6 +16,7 @@ export interface MainState {
   book: string
   bookNo: number
   showPlus: boolean
+  bookTwo: string
 }
 
 const initialState: MainState = {
@@ -28,6 +29,7 @@ const initialState: MainState = {
   book: '',
   bookNo: 0,
   showPlus: false,
+  bookTwo: '',
 }
 
 export const mainSlice = createSlice({
@@ -61,6 +63,9 @@ export const mainSlice = createSlice({
     setShowPlus: (state, action) => {
       state.showPlus = action.payload
     },
+    setBookTwo: (state, action) => {
+      state.bookTwo = action.payload
+    },
   },
 })
 
@@ -74,6 +79,7 @@ export const {
   setBook,
   setBookNo,
   setShowPlus,
+  setBookTwo,
 } = mainSlice.actions
 
 export default mainSlice.reducer
